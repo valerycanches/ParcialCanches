@@ -10,15 +10,16 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="519dp"
-        android:layout_marginTop="1dp"
+        android:layout_height="678dp"
+        android:layout_marginTop="4dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -26,7 +27,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/etApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -34,31 +35,45 @@
             android:inputType="text" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/genderSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:entries="@array/gender_array" />
+
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="242dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="match_parent"
+                android:id="@+id/rbFemenino"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RadioButton" />
+                android:text="Femenino" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="match_parent"
+                android:id="@+id/rbMasculino"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RadioButton" />
+                android:text="Masculino" />
         </RadioGroup>
 
         <DatePicker
             android:id="@+id/birthdayDatePicker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        /
+            android:layout_height="415dp" />
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="Registrar" />
+
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="Volver" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
