@@ -16,7 +16,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/etUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -26,7 +26,7 @@
         tools:layout_editor_absoluteY="231dp" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/etContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -36,7 +36,7 @@
         tools:layout_editor_absoluteY="307dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnIniciar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="INICIAR SESIÓN"
@@ -44,9 +44,10 @@
         tools:layout_editor_absoluteY="382dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="Registrarse"
         android:text="REGISTRARSE"
         tools:layout_editor_absoluteX="140dp"
         tools:layout_editor_absoluteY="493dp" />
