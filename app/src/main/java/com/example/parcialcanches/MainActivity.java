@@ -50,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
                 Registrarse(v);
             }
         });
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            String username = intent.getStringExtra("USERNAME");
+            String password = intent.getStringExtra("PASSWORD");
+            if (username != null && password != null) {
+                usuario.setText(username);
+                contraseña.setText(password);
+            }
+        }
     }
 
     public void Registrarse(View view) {
@@ -72,4 +82,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

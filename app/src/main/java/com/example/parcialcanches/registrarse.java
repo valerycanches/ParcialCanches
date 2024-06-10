@@ -26,7 +26,6 @@ public class registrarse extends AppCompatActivity {
     private Spinner genero;
     private Button registrarse;
     private Button volver;
-    private RadioButton rbFemenino, rbMasculino;
 
     // Simulando una base de datos en memoria
     private static HashMap<String, String> usuariosRegistrados = new HashMap<>();
@@ -44,12 +43,11 @@ public class registrarse extends AppCompatActivity {
         nombre = findViewById(R.id.etNombre);
         apellido = findViewById(R.id.etApellido);
         crearUsuario = findViewById(R.id.etCrearUsuario);
-        crearContraseña = findViewById(R.id.editTextTextPassword);
+        crearContraseña = findViewById(R.id.etCrearContraseña);
         genero = findViewById(R.id.genderSpinner);
         registrarse = findViewById(R.id.btnRegistrar);
         volver = findViewById(R.id.btnVolver);
-        rbFemenino = findViewById(R.id.rbFemenino);
-        rbMasculino = findViewById(R.id.rbMasculino);
+
 
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +109,8 @@ public class registrarse extends AppCompatActivity {
 
         Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("USERNAME",username);
+        intent.putExtra("PASSWORD",password);
         startActivity(intent);
         finish();
     }
@@ -123,6 +123,12 @@ public class registrarse extends AppCompatActivity {
 
     // Método estático para verificar credenciales
     public static boolean verificarCredenciales(String username, String password) {
-        return usuariosRegistrados.containsKey(username) && usuariosRegistrados.get(username).equals(password);
+        // Verificar si el usuario y la contraseña coinciden con los registros almacenados
+        if (usuariosRegistrados.containsKey(username)) {
+            String storedPassword = usuariosRegistrados.get(username);
+            return storedPassword.equals(password);
+        }
+        return false;
     }
+
 }
