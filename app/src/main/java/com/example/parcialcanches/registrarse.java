@@ -39,16 +39,15 @@ public class registrarse extends AppCompatActivity {
         apellido = findViewById(R.id.etApellido);
         genero = findViewById(R.id.genderSpinner);
         Registrarse = findViewById(R.id.btnRegistrar);
-        Volver = findViewById(R.id.btnVolver);        rbFemenino = findViewById(R.id.rbFemenino);
-
+        Volver = findViewById(R.id.btnVolver);
+        rbFemenino = findViewById(R.id.rbFemenino);
         rbMasculino = findViewById(R.id.rbMasculino);
 
         Registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validaRegistration()){
-                    Toast.makeText(registrarse.this,"Registro exitoso",Toast.LENGTH_SHORT).show();
-                    finish();
+                if (validaRegistration()) {
+                    Registrar();
                 }
             }
         });
@@ -87,6 +86,11 @@ public class registrarse extends AppCompatActivity {
 
     public void Volver(){
         Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
+    public void Registrar(){
+        Intent i = new Intent(this, juego.class);
         startActivity(i);
         finish();
     }

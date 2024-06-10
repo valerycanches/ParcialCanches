@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,5 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(i);
         finish();
+    }
+    public void IniciarSesion(View view) {
+        String usuarios = usuario.getText().toString().trim();
+        String contrasenas = contraseña.getText().toString().trim();
+
+        if (usuarios.isEmpty() || contrasenas.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingrese su usuario y contraseña", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent i = new Intent(this, juego.class);
+            startActivity(i);
+            finish();
+        }
     }
 }

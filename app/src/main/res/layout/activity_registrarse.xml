@@ -68,12 +68,14 @@
             android:id="@+id/btnRegistrar"
             android:layout_width="match_parent"
             android:layout_height="36dp"
+            android:onClick="Registrar"
             android:text="Registrar" />
 
         <Button
             android:id="@+id/btnVolver"
             android:layout_width="match_parent"
             android:layout_height="36dp"
+            android:onClick="Volver"
             android:text="Volver" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
