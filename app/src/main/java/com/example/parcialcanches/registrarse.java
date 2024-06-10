@@ -16,14 +16,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.HashMap;
+
 public class registrarse extends AppCompatActivity {
     private EditText nombre;
     private EditText apellido;
+    private EditText crearUsuario;
+    private EditText crearContraseña;
     private Spinner genero;
-    private Button Registrarse;
-    private Button Volver;
+    private Button registrarse;
+    private Button volver;
     private RadioButton rbFemenino, rbMasculino;
 
+    // Simulando una base de datos en memoria
+    private static HashMap<String, String> usuariosRegistrados = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,61 +43,86 @@ public class registrarse extends AppCompatActivity {
         });
         nombre = findViewById(R.id.etNombre);
         apellido = findViewById(R.id.etApellido);
+        crearUsuario = findViewById(R.id.etCrearUsuario);
+        crearContraseña = findViewById(R.id.editTextTextPassword);
         genero = findViewById(R.id.genderSpinner);
-        Registrarse = findViewById(R.id.btnRegistrar);
-        Volver = findViewById(R.id.btnVolver);
+        registrarse = findViewById(R.id.btnRegistrar);
+        volver = findViewById(R.id.btnVolver);
         rbFemenino = findViewById(R.id.rbFemenino);
         rbMasculino = findViewById(R.id.rbMasculino);
 
-        Registrarse.setOnClickListener(new View.OnClickListener() {
+        registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaRegistration()) {
-                    Registrar();
+                if (validaRegistro()) {
+                    registrarUsuario();
                 }
             }
         });
-        Volver.setOnClickListener(new View.OnClickListener() {
+        volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Volver();
+                volver();
             }
         });
-
     }
 
-    private boolean validaRegistration(){
+    private boolean validaRegistro() {
         String firstName = nombre.getText().toString();
         String lastName = apellido.getText().toString();
+        String username = crearUsuario.getText().toString();
+        String password = crearContraseña.getText().toString();
         String gender = genero.getSelectedItem().toString();
-        boolean isYesChecked = rbFemenino.isChecked();
-        boolean isNoChecked = rbMasculino.isChecked();
 
-        if(TextUtils.isEmpty(firstName)){
+        if (TextUtils.isEmpty(firstName)) {
             nombre.setError("El campo nombre no puede estar vacío");
             return false;
         }
 
-        if(TextUtils.isEmpty(lastName)){
+        if (TextUtils.isEmpty(lastName)) {
             apellido.setError("El campo apellido no puede estar vacío");
             return false;
         }
 
-        if(!isYesChecked && !isNoChecked){
-            Toast.makeText(this,"Seleccione una opcion de radio", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(username)) {
+            crearUsuario.setError("El campo usuario no puede estar vacío");
             return false;
         }
+
+        if (TextUtils.isEmpty(password)) {
+            crearContraseña.setError("El campo contraseña no puede estar vacío");
+            return false;
+        }
+
+        if (gender.equals("Seleccionar género")) {
+            Toast.makeText(this, "Seleccione un género", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 
-    public void Volver(){
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+    private void registrarUsuario() {
+        String username = crearUsuario.getText().toString();
+        String password = crearContraseña.getText().toString();
+
+        // Almacenar el nuevo usuario en la "base de datos" en memoria
+        usuariosRegistrados.put(username, password);
+
+        Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
-    public void Registrar(){
-        Intent i = new Intent(this, juego.class);
-        startActivity(i);
+
+    private void volver() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
+    }
+
+    // Método estático para verificar credenciales
+    public static boolean verificarCredenciales(String username, String password) {
+        return usuariosRegistrados.containsKey(username) && usuariosRegistrados.get(username).equals(password);
     }
 }

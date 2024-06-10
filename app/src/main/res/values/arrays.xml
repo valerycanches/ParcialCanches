@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- res/values/arrays.xml -->
 <resources>
-    <string-array name="gender_array">
-        <item>Masculino</item>
-        <item>Femenino</item>
-    </string-array>
+
 </resources>

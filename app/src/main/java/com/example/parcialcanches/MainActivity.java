@@ -31,28 +31,45 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         usuario = findViewById(R.id.etUsuario);
         contraseña = findViewById(R.id.etContraseña);
         iniciarsesion = findViewById(R.id.btnIniciar);
         registrarse = findViewById(R.id.btnRegistrarse);
 
-    }
-    public void Registrarse (View view){
-        Intent i = new Intent(this, registrarse.class);
+        iniciarsesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IniciarSesion(v);
+            }
+        });
 
+        registrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Registrarse(v);
+            }
+        });
+    }
+
+    public void Registrarse(View view) {
+        Intent i = new Intent(this, registrarse.class);
         startActivity(i);
         finish();
     }
+
     public void IniciarSesion(View view) {
         String usuarios = usuario.getText().toString().trim();
         String contrasenas = contraseña.getText().toString().trim();
 
         if (usuarios.isEmpty() || contrasenas.isEmpty()) {
             Toast.makeText(this, "Por favor, ingrese su usuario y contraseña", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if (registrarse.verificarCredenciales(usuarios, contrasenas)) {
             Intent i = new Intent(this, juego.class);
             startActivity(i);
             finish();
+        } else {
+            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
     }
 }
